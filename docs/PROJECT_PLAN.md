@@ -1,220 +1,241 @@
-# Gym Timer — Product and Delivery Plan
+# Gym Timer — Fit-Your-Workout Plan
 
-**Status:** Product plan  
+**Purpose:** Help gym users finish a useful, planned workout within the time they actually have.  
 **Repository:** paras88dhami/Gym_timer  
-**Date:** 6 October 2026
+**Updated:** 6 October 2026
 
-## 1. Product vision
+## 1. The problem this app solves
 
-Gym Timer helps a person plan and complete a resistance-training session within a chosen time budget. A user can build a workout from built-in or custom exercises, choose sets, reps, rest, and effort targets, then follow a live session timer that shows what to do next and whether the workout is on schedule.
+A person may have only 60 minutes at the gym, but their workout plan can take longer. They may waste time deciding what to do next, waiting for equipment, guessing how long to rest, or discover halfway through that the workout will not fit.
 
-The app supports goals such as muscle growth, strength, athletic power, general fitness, and a lean-body goal. These are programming emphases, not promises about appearance or results. A timer can help someone follow a plan consistently; it cannot guarantee muscle gain, fat loss, or a particular physique.
+Gym Timer should answer three questions before and during the workout:
 
-**Product promise:** “Know what comes next, how long the session is expected to take, and how your actual workout compares with your plan.”
+1. **What workout should I do for my goal and the time I have?**
+2. **What should I do now, and how long should I rest?**
+3. **Am I still likely to finish within my time limit?**
 
-## 2. Who it is for
+The main benefit is not just recording workouts. It is helping the user arrive with a workable plan, follow it without guessing, and make a clear choice if time becomes tight.
 
-- Gym members who have a fixed amount of time, such as 45 or 60 minutes.
-- People who want to create and save their own exercises and workout templates.
-- Beginners who need a clear set-by-set flow without a complicated coaching system.
-- Experienced lifters who want to track loads, effort, rest, and session history.
-- Athletes who want a timer and workout log for a coach- or user-authored plan.
+## 2. Simple user experience
 
-The first release is for adults using general fitness guidance. It is not a medical device, rehabilitation tool, or substitute for a qualified coach or health professional.
+The main action should be **Start a workout**. Avoid making the user fill out a long profile before they can train.
 
-## 3. Research findings and product implications
+### First-time setup
 
-The 2026 American College of Sports Medicine (ACSM) position stand reviewed 137 systematic reviews with more than 30,000 participants. It reports that resistance training improves strength, muscle size, power, endurance, and several measures of physical function. Its highlighted training emphases differ by outcome: strength is associated with heavier loads, 2–3 sets, and at least two sessions weekly; hypertrophy with higher weekly volume (at least 10 sets per week); and power with moderate loads and a fast lifting phase. The stand also notes that several popular variables do not consistently change outcomes for healthy adults. These are population-level findings, not individualized prescriptions. [ACSM 2026 position stand](https://doi.org/10.1249/MSS.0000000000003897)
+Ask only for information needed to make a useful session:
 
-The World Health Organization recommends adults accumulate 150–300 minutes of moderate aerobic activity (or equivalent) per week and do muscle-strengthening activities involving major muscle groups on at least two days per week. A gym timer can support resistance sessions, but it should not imply that one 60-minute workout covers all activity recommendations. [WHO physical activity guidance](https://www.who.int/initiatives/behealthy/physical-activity)
+- Available time: choose 30, 45, 60, or enter a custom duration.
+- Goal: muscle growth, strength, athletic power, general fitness, or lean-body support.
+- Experience: beginner, intermediate, or advanced.
+- Available equipment: gym equipment, home equipment, or selected equipment.
+- Optional: exercises to include or avoid.
 
-### Design decisions from the research
+The user can skip optional questions and change these later.
 
-1. Treat session length as a user’s time budget, not as proof that every goal can be achieved in exactly one hour.
-2. Let users edit exercises, sets, reps, rest, and effort. Any starter template must be clearly labeled as general guidance.
-3. Make goal modes change the emphasis and tracking labels, not promise body transformations.
-4. Do not force every set to a fixed duration. Most resistance sets end when the lifter completes the target reps; the app should time rest and estimate the session end, with optional timed sets or tempo when useful.
-5. Do not silently shorten rest periods or remove planned work to fit a deadline. Warn about likely overrun and let the user decide.
-6. Keep progression suggestions conservative, optional, and based on the user’s logged history. Do not auto-increase weight or volume in the MVP.
+### Starting a workout
 
-## 4. Core user journey
+The app offers two obvious choices:
 
-1. **Choose a goal and time budget.** Select a focus such as muscle growth, strength, athletic power, general fitness, or lean-body support. Set a default session length, with 60 minutes as a suggested starting value.
-2. **Build a workout.** Add exercises from the library or create custom ones. For each exercise, set equipment, target sets, reps or duration, rest, and optional load and effort target.
-3. **Review the estimate.** See planned work time, rest time, transitions, warm-up allowance, total estimate, and the difference from the time budget. Edit the plan before starting.
-4. **Run the workout.** See the active exercise, current set, reps or duration, rest countdown, next exercise, elapsed time, remaining estimate, and scheduled finish estimate. Mark a set complete, edit the result, skip it, pause, or end the session.
-5. **Review and save.** Compare planned and actual duration, record completed sets, load, reps, and perceived effort, and view simple history and personal records.
+- **Build my workout:** add or edit exercises, sets, reps, and rest.
+- **Make a workout fit my time:** select a reviewed template or ask the app to create a draft from the user’s goal, experience, equipment, and time.
 
-## 5. MVP feature scope
+Before the timer starts, show one simple review:
 
-### A. Workout and exercise builder
+- “Estimated workout: 52 minutes”
+- “Your time: 60 minutes”
+- “Includes: 6-minute warm-up and 8-minute buffer”
+- Exercise list with sets and rest
+- Buttons: **Start**, **Edit workout**, and **Make it shorter**
 
-- Create, edit, duplicate, reorder, and delete workout templates.
-- Add exercises from a small starter library and create custom exercises.
-- Exercise fields: name, muscle group(s), equipment, movement category, notes, and optional instructions or image.
-- Workout fields: name, goal focus, planned duration, warm-up allowance, and exercises.
-- Set fields: target sets, rep range or timed duration, rest after each set, optional weight, optional RPE/RIR effort target, and notes.
-- Support bodyweight, free-weight, machine, band, and timed/cardio-style entries.
+A user should understand the plan without reading documentation.
 
-### B. Session planner and estimator
+## 3. How the app makes a workout fit
 
-Estimate total duration as:
+The app estimates the session using:
 
-**warm-up allowance + exercise work estimates + planned between-set rests + exercise transition allowances**
+**warm-up + exercise set time + planned rest + equipment/setup transitions + time buffer**
 
-For a rep-based exercise, work time can be a user-configured estimate or an optional tempo-based estimate. Label estimates as estimates; do not present a predicted set duration as an exact finish time. Show confidence as low/medium if data is sparse, then improve estimates from the user’s own completed sessions.
+Set-time estimates should improve from that user’s completed workouts. Until enough history exists, use a visible default estimate and tell the user it is an estimate.
 
-- Show total planned duration, time budget, and over/under budget before starting.
-- Allow the user to revise the workout or start anyway.
-- During the workout, update the estimated finish time from elapsed time and remaining planned work.
-- Offer configurable transition allowance and warm-up block.
-- Keep the plan intact when it exceeds the time budget; make the overrun visible.
+To fit a workout into a time limit, the app should:
 
-### C. Live workout timer
+1. Keep the user’s selected goal and important exercises.
+2. Include a warm-up and the rest periods in the time calculation.
+3. Prioritize the main exercises the user marked as important.
+4. Offer a shorter draft by reducing lower-priority accessory work first.
+5. Offer compatible paired exercises only as an optional choice, and never use pairing to rush an exercise or remove needed rest.
+6. Show exactly what changed before the user accepts the shorter plan.
 
-- Large, readable current exercise and set count.
-- Start, pause, resume, finish, and abandon actions.
-- Rest countdown with sound/vibration options and a clear next-set cue.
-- Buttons to complete a set, edit actual reps/load/effort, skip a set, or skip an exercise.
-- Elapsed session time, remaining planned time, and estimated finish clock time.
-- Optional timed-set countdown and tempo cue; never assume all lifting sets are timed.
-- Recover correctly after screen lock, app backgrounding, or process restart. Persist timer state and derive remaining time from timestamps, rather than relying only on a running screen animation.
-- Accessible controls, clear contrast, large tap targets, and optional audio cues.
+The app must not silently remove sets, change the goal, or shorten rest to make the numbers fit. If the user’s chosen plan cannot fit safely and realistically, say so and offer choices:
 
-### D. Workout history
+- Use the suggested shorter version.
+- Choose another workout.
+- Keep the original and expect to run over.
+- Finish the main exercises and save the rest for later.
 
-- Save completed sessions and their set-by-set results.
-- Show session duration, completion, exercise history, and basic personal records.
-- Display simple volume summaries only when the required load and repetition data exist.
-- Allow editing a workout after completion without changing the original planned-vs-actual record.
-- Export or back up data in a later phase.
+The app should target a planned finish before the deadline—for example, a 52-minute plan for a 60-minute visit—so the user has room for transitions and small delays. It can improve estimates, but it cannot guarantee the session will finish on time if equipment is busy, the user takes longer, or unexpected delays occur.
 
-### E. Goal modes
+## 4. During the workout
 
-Goal modes should provide a useful starting organization while leaving user control intact.
+The active screen should show only what the user needs right now:
 
-| Goal focus | Product emphasis | Important boundary |
-| --- | --- | --- |
-| Muscle growth / bodybuilding | Track weekly sets by muscle group, exercise, load, and reps. Support reusable split templates. | The app does not promise muscle gain or prescribe nutrition. |
-| Strength | Highlight load, reps, completed sets, and progress history. | Heavy lifting guidance should be optional and should not be treated as safe for every user. |
-| Athletic / power | Support coach-authored explosive or sport-specific blocks, timed drills, and rest. | Do not auto-create technical Olympic lifts or advanced sport plans for beginners. |
-| General fitness | Make balanced templates and consistent logging easy. | A resistance session timer is only one part of weekly physical activity. |
-| Lean-body support | Support resistance-training consistency and session history. | Fat loss depends on factors outside the timer; do not promise fat loss or prescribe a restrictive diet. |
+- Current exercise and set number.
+- Target reps or timed duration.
+- Rest countdown after the user completes a set.
+- Next exercise.
+- Time elapsed, time left in the user’s visit, and current estimated finish.
+- Large buttons: **Set complete**, **Pause**, **Skip**, and **Finish**.
 
-## 6. Time and timer rules
+For regular lifting, the app should not force a fixed work countdown because a set of reps does not take the same amount of time for everyone. The user marks the set complete; then the selected rest timer starts. Fixed countdowns are appropriate for timed movements such as planks or intervals.
 
-The user controls the time budget. The app helps plan and report; it should not pressure the user to rush.
+At useful checkpoints, such as halfway through the available time, show whether the workout is on track. If it is behind, provide clear choices without rushing the user:
 
-- Rest timing begins when the user marks a set complete, unless the user chooses another start rule.
-- Rest may be paused, skipped, or changed by the user.
-- A completed set is logged separately from its rest interval.
-- The session continues if the target end time passes. Show the overrun and let the user finish, skip, or end.
-- Display both “planned finish” and “current estimate” so the user can tell them apart.
-- If the plan cannot fit, explain which planned blocks account for the difference rather than silently changing them.
+- Continue the plan.
+- Use the pre-approved shorter version and show which accessory sets will be removed.
+- Finish the main exercises and save remaining work.
+- Extend the session if the user has time.
 
-## 7. Safety, privacy, and trust
+The app never ends a set or cuts a rest period automatically.
 
-- Show a short first-use note: use loads and movements appropriate to your ability; stop if you feel pain, dizziness, or unusual symptoms; seek qualified medical advice when needed.
-- Let users skip or modify any exercise. Avoid aggressive language such as “no excuses” or “push through pain.”
-- Starter plans are educational examples for generally healthy adults, not personal medical or coaching advice.
-- Use effort inputs such as RPE or reps in reserve as optional self-reports; explain that they are estimates and can be difficult for beginners to judge.
-- Avoid collecting health information that is not needed. Keep workout data local on the device for MVP; explain backup and deletion behavior.
-- Do not include ads or social sharing in the first release.
+## 5. Example: a 60-minute gym visit
 
-## 8. Proposed technical direction
+A user chooses muscle growth, intermediate experience, and 60 minutes. The app finds or drafts a workout estimated at 52 minutes:
 
-**Recommendation:** Build a mobile-first, offline-first app in Flutter and Dart. This fits a personal gym use case, supports Android and iOS from one codebase, and allows the core workout timer to work without an account or network connection.
+- Warm-up: 6 minutes
+- Four main exercises: 3 sets each, with work and rest estimates
+- Transitions and equipment setup: included
+- Planned workout: about 52 minutes
+- Spare time: about 8 minutes
 
-### Initial architecture
+The app shows the exercise list and rest settings before starting. During the workout, it updates the estimated finish using the user’s actual pace. If the user falls behind, it offers a shorter version that preserves the marked main exercises and clearly shows any accessory work removed.
 
-- **Presentation:** screens and reusable widgets for dashboard, workout builder, live session, history, and settings.
-- **Application/domain:** workout, exercise, set, session, timer, estimate, and goal-focus models; business rules kept independent from UI.
-- **Data:** local database/repository for templates, custom exercises, preferences, and session records.
-- **Timer service:** session state machine with timestamp-based countdown and platform notifications/audio cues.
-- **Testing:** unit tests for estimate and timer rules; widget tests for key flows; integration tests for completing a workout.
+This is an estimate, not a guarantee: crowded equipment and other delays are outside the app’s control.
 
-Select a local persistence package after checking Flutter compatibility and maintenance. Do not add a backend until sync, accounts, coach sharing, or cross-device backup is an approved product need.
+## 6. Goals and templates
 
-### Core data entities
+The goal determines what the app highlights and which reviewed template it suggests. It does not promise a body transformation.
 
-- **Exercise:** id, name, muscle groups, equipment, movement type, built-in/custom flag, notes.
-- **WorkoutTemplate:** id, name, goal focus, target duration, warm-up allowance, ordered exercises.
-- **ExercisePlan:** exercise id, order, set plan, rep or duration target, rest seconds, optional effort target.
-- **WorkoutSession:** id, template snapshot, started/ended/paused timestamps, completion status.
-- **SetLog:** session id, exercise id, set number, planned target, actual reps/duration, load, effort, completed/skipped status, timestamps.
-- **UserSettings:** units, default session duration, cues, transition allowance, theme, and data-export options.
+| Goal | What the app emphasizes |
+| --- | --- |
+| Muscle growth / bodybuilding | Sets per muscle group, reps, load, and training history |
+| Strength | Load, reps, completed sets, and progress |
+| Athletic power | Coach- or user-authored power drills and timed work/rest blocks |
+| General fitness | Consistent training and balanced exercise coverage |
+| Lean-body support | Workout consistency and resistance-training history; no fat-loss promise or restrictive diet advice |
 
-Keep a snapshot of the plan in each session so future template edits do not rewrite workout history.
+Templates should be reviewed by a qualified trainer before being presented as recommendations. Users can customize them. Athletic plans, advanced lifts, and high-intensity work need extra care; do not auto-generate technical training for a beginner.
 
-## 9. Screen plan
+Research supports treating strength, hypertrophy, and power as related but distinct outcomes. The 2026 ACSM position stand reviewed 137 systematic reviews involving more than 30,000 participants. For example, its findings highlight heavier loads and 2–3 sets for strength, higher weekly volume for hypertrophy, and moderate loads moved quickly for power. These are general findings for healthy adults, not individualized medical or coaching advice. [ACSM 2026 position stand](https://doi.org/10.1249/MSS.0000000000003897)
 
-1. **Home:** Start workout, resume active session, recent sessions, templates.
-2. **Goal and duration setup:** Choose a goal focus and session time budget.
-3. **Workout editor:** Reorder exercises, edit sets/reps/rest, view estimated total.
-4. **Exercise library:** Search, filter, view details, add custom exercises.
-5. **Pre-session review:** Time estimate, overrun warning, warm-up, start button.
-6. **Active session:** Current set, rest timer, progress, finish estimate, controls.
-7. **Session summary:** Planned vs actual, completed work, editable notes.
-8. **History and settings:** Past sessions, units, cues, data export, privacy controls.
+## 7. MVP features
 
-## 10. Delivery roadmap
+### Workout setup
 
-### Phase 0 — Product decisions and foundation
+- Time choices: 30, 45, 60 minutes, or custom.
+- Goal and experience selection.
+- A small, reviewed exercise and workout-template library.
+- Custom exercise creation.
+- Edit exercise order, sets, reps, rest, load, and notes.
+- Mark important exercises and exercises the user wants excluded.
+- Equipment selection and optional setup/transition time.
 
-- Confirm platform (recommended Flutter), app name, target audience, age scope, and offline-first behavior.
-- Add architecture, design system, and baseline navigation.
-- Define timer state transitions and duration-estimation rules.
+### Fit check
 
-### Phase 1 — MVP workout timer
+- Estimate full workout time before starting.
+- Show the time buffer.
+- Explain when a plan exceeds the user’s limit.
+- Offer a transparent shorter version that preserves the user’s priority exercises.
+- Do not change rest or remove work without showing the user first.
 
-- Create and save workout templates and custom exercises.
-- Configure duration, exercises, sets, reps, and rest.
-- Show planned session estimate and budget mismatch.
-- Run a workout with rest countdown, pause/resume, complete/skip, and persistent state.
-- Save session and set history locally.
-- Add accessibility and basic safety messaging.
+### Live session
 
-### Phase 2 — Goal-focused history and quality
+- Set-by-set guidance and rest timer.
+- Pause, resume, skip, and finish controls.
+- Time remaining and updated finish estimate.
+- Recover correctly if the screen locks or the app goes to the background.
 
-- Add goal filters and weekly set summaries.
-- Improve personal estimates using the user’s own session history.
-- Add optional timed sets, tempo cues, sound/vibration settings, data export/import.
-- Add tests for timer accuracy, app lifecycle recovery, data integrity, and accessibility.
+### History
 
-### Phase 3 — Optional coaching and sync
+- Save completed sessions and actual sets, reps, load, and duration.
+- Use actual pace to improve future estimates.
+- Show planned versus actual session time.
+- Keep data on the device for the first release; no account required.
 
-Only proceed if users validate the need:
-- Cloud backup and multi-device sync.
-- Coach-created plans and workout sharing.
-- Carefully reviewed template library.
-- Wearable or calendar integrations.
+## 8. Safety and trust
 
-## 11. MVP acceptance criteria
+- Use clear wording: stop if you feel pain, dizziness, or unusual symptoms.
+- Let users skip or modify any exercise.
+- Do not encourage training through pain or rushing to beat the clock.
+- Rest settings are visible and editable.
+- Label estimates as estimates.
+- Keep any workout recommendations general unless reviewed by a qualified trainer.
+- The app supports gym planning; it does not replace professional medical advice.
+- Do not promise muscle gain, fat loss, or athletic results.
 
-- A user can create a workout with a custom exercise and save it offline.
-- A user can set a session budget such as 45 or 60 minutes and see an estimate before starting.
-- An over-budget plan is clearly explained and never silently shortened.
-- A user can complete multiple sets, take rest periods, pause, resume, skip, and finish.
-- Timer state remains accurate when the app is backgrounded or reopened.
-- Actual reps, load, and optional effort can differ from the target and are saved correctly.
-- A completed session appears in history with planned and actual duration.
-- Core flows work without network access or account registration.
-- Timer and estimate logic have unit tests; key screen flows have integration coverage.
+WHO guidance recommends adults do muscle-strengthening activities involving major muscle groups on at least two days per week. A single session timer is one tool for planning workouts, not a complete health or fitness program. [WHO physical activity guidance](https://www.who.int/initiatives/behealthy/physical-activity)
 
-## 12. Open decisions before implementation
+## 9. Suggested technology
 
-These can be resolved while setting up Phase 0:
+**Recommendation:** Flutter and Dart for an Android and iOS mobile app.
 
-1. Android only first, or Android and iOS together?
-2. Flutter as recommended here, or another stack?
-3. Should users sign in in the first release? Recommendation: no; keep it offline-first.
-4. Should exercise illustrations be included at launch, or added after the timer works?
-5. Should the first release include built-in example workouts, or only user-created templates?
+Keep the MVP offline-first:
+
+- Store exercises, templates, settings, and sessions locally.
+- Do not require account creation or internet access to start a workout.
+- Use timestamp-based timer state so countdowns remain accurate after screen lock or app backgrounding.
+- Keep the timer and workout-time estimator separate from the UI so they can be tested.
+
+## 10. Delivery phases
+
+### Phase 1 — Useful 60-minute MVP
+
+- Home screen with a clear Start a workout action.
+- Choose available time and goal.
+- Create or select a workout template.
+- Estimate duration and show buffer or overrun before start.
+- Run set/rest timer with pause, resume, skip, and finish.
+- Save session history offline.
+
+### Phase 2 — Better fit estimates
+
+- Learn set-time estimates from a user’s own completed workouts.
+- Add equipment/setup and transition-time preferences.
+- Improve the transparent shorter-workout suggestions.
+- Add templates reviewed by a qualified trainer.
+- Test app backgrounding, timer accuracy, and the main user flows.
+
+### Phase 3 — Optional additions
+
+Only after users find the first version useful:
+
+- Account and cloud backup.
+- Coach-created workout plans.
+- Sharing plans between users and coaches.
+- More detailed progress tracking or integrations.
+
+## 11. MVP success checks
+
+The first version is useful if a new user can:
+
+- Start a 60-minute workout without a long setup process.
+- See whether the planned session fits before entering the gym floor.
+- Understand the next exercise and exactly when the rest timer ends.
+- Make an informed choice when the workout is behind schedule.
+- Complete and save a workout without internet access.
+- See estimates improve from their own recorded pace.
+
+## 12. Decisions before implementation
+
+- Confirm Android first or Android and iOS together. Recommendation: Flutter supports both.
+- Confirm Flutter as the app stack.
+- Decide whether the first library contains trainer-reviewed templates. Recommendation: include a small reviewed set.
+- Decide which exercises and equipment the first release supports.
+- Keep login and cloud sync out of the MVP unless users need them.
 
 ## 13. Research sources
 
-- Currier BS, et al. **American College of Sports Medicine Position Stand: Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults: An Overview of Reviews.** *Medicine & Science in Sports & Exercise.* 2026;58(4):851–872. [DOI](https://doi.org/10.1249/MSS.0000000000003897)
-- American College of Sports Medicine. **ACSM Releases New Position Stand on Resistance Training.** 18 March 2026. [ACSM summary](https://acsm.org/science-spotlight-acsm-releases-new-position-stand-on-resistance-training/)
+- Currier BS, et al. **American College of Sports Medicine Position Stand: Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults.** *Medicine & Science in Sports & Exercise.* 2026;58(4):851–872. [DOI](https://doi.org/10.1249/MSS.0000000000003897)
+- American College of Sports Medicine. **ACSM Releases New Position Stand on Resistance Training.** [Summary](https://acsm.org/science-spotlight-acsm-releases-new-position-stand-on-resistance-training/)
 - World Health Organization. **Physical activity recommendations.** [WHO guidance](https://www.who.int/initiatives/behealthy/physical-activity)
 
 Research checked: 6 October 2026.
