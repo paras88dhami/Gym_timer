@@ -161,6 +161,17 @@ Research supports treating strength, hypertrophy, and power as related but disti
 - Show planned versus actual session time.
 - Keep data on the device for the first release; no account required.
 
+
+### Daily steps
+- Show today's step count, a user-set step goal, and weekly history.
+- Request access to phone health data only when the user turns step tracking on.
+- Keep step tracking optional; the workout timer must work without it.
+
+### Calories burned
+- Show an estimated calorie burn for workouts and activities, with optional body-weight input.
+- Label this as an estimate; do not present it as an exact measurement or use it to promise weight loss.
+- Do not include food logging or diet targets in the first version.
+
 ## 8. Safety and trust
 
 - Use clear wording: stop if you feel pain, dizziness, or unusual symptoms.
@@ -204,6 +215,9 @@ Keep the MVP offline-first:
 - Add templates reviewed by a qualified trainer.
 - Test app backgrounding, timer accuracy, and the main user flows.
 
+- Add opt-in step tracking, step goals, and weekly history through the phone's health platform.
+- Add estimated calories burned for workouts and activities; do not treat the estimate as exact.
+
 ### Phase 3 — Optional additions
 
 Only after users find the first version useful:
@@ -233,6 +247,9 @@ The first version is useful if a new user can:
 - Keep login and cloud sync out of the MVP unless users need them.
 
 ## 13. Research sources
+
+- Fuller D, et al. **Reliability and Validity of Commercially Available Wearable Devices for Measuring Steps, Energy Expenditure, and Heart Rate.** *JMIR mHealth and uHealth.* 2020. [Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC7509623/)
+
 
 - Currier BS, et al. **American College of Sports Medicine Position Stand: Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults.** *Medicine & Science in Sports & Exercise.* 2026;58(4):851–872. [DOI](https://doi.org/10.1249/MSS.0000000000003897)
 - American College of Sports Medicine. **ACSM Releases New Position Stand on Resistance Training.** [Summary](https://acsm.org/science-spotlight-acsm-releases-new-position-stand-on-resistance-training/)
